@@ -391,4 +391,59 @@ ggplot(D_LQ, mapping = aes(
 
 ### Exercise 11
 
+``` r
+##Filter the data for observations in North Carolina only, and recreate the plot
+##You should also adjust the transparency of the points, by setting the alpha level, so that it’s easier to see the overplotted ones. 
+D_LQ_NC <- D_LQ %>%
+  filter(state == "NC")
+
+ggplot(D_LQ_NC, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  borders("state", regions = "north carolina", colour = "gray50", fill = NA) +  # Adds NC border+
+  geom_point(alpha = 0.5)+
+  theme_minimal() +
+  labs(title = "Denny's and La Quinta Locations in North Carolina",
+       x = "Longitude",
+       y = "Latitude",
+       color = "Establishment Type")
+```
+
+![](lab-04_files/figure-gfm/NC_plot-1.png)<!-- -->
+
+``` r
+##Visually, does Mitch Hedberg’s joke appear to hold here?
+## La Quinta next to Denny’s?
+## The data does not support Mitch Hedberg’s joke. La Quinta and Denny’s locations do not consistently appear near each other.
+```
+
 ### Exercise 12
+
+``` r
+##filter the data for observations in Texas only, and recreate the plot, with an appropriate alpha level. 
+D_LQ_TX <- D_LQ %>%
+  filter(state == "TX")
+
+ggplot(D_LQ_TX, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  borders("state", regions = "Texas", colour = "gray50", fill = NA) +  # Adds TX border
+  geom_point(alpha = 0.3)+
+  theme_minimal() +
+  labs(title = "Denny's and La Quinta Locations in North Carolina",
+       x = "Longitude",
+       y = "Latitude",
+       color = "Establishment Type")
+```
+
+![](lab-04_files/figure-gfm/Texas_plot-1.png)<!-- -->
+
+``` r
+##Visually, does Mitch Hedberg’s joke appear to hold here?
+## La Quinta next to Denny’s?
+## The data does not support Mitch Hedberg’s joke. La Quinta and Denny’s locations do not consistently appear near each other.
+```

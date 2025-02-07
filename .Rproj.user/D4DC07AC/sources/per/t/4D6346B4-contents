@@ -20,26 +20,26 @@ states <- read_csv("data/states.csv")
 ```
 
 ### Exercise 1
-```{r dimensions of the Denny’s dataset}
+```{r dimensions of the Dennys dataset}
 cat ("There are", nrow (Dennys), "rows and", ncol(Dennys), "variables in the Dennys dataset.", "\n") 
 
 ###There are six variables: address, city, state, zip code, longitude, and latitude. Each row represents one Denny's store. 
 ```
 
 ### Exercise 2
-```{r dimensions of the La Quinta’s dataset}
+```{r dimensions of the La Quinta dataset}
 cat ("There are", nrow (Laquinta), "rows and", ncol(Laquinta), "variables in the Laquinta dataset.", "\n") 
 
 ###There are six variables: address, city, state, zip code, longitude, and latitude. Each row represents one La Quinta store. 
 ```
 ### Exercise 3
-```{r any La Quinta’s and Denny’slocations outside of the US?}
+```{r any La Quinta and Dennys locations outside of the US?}
 ## from the website, La Quinta has some stores across the world, for instance, in South America: Chile, Colombia, Ecuador. In Asia: China. In Europe: Turkey. 
 ## All Danny's stores are in the US.
 ```
 
 ### Exercise 4
-```{r any Denny’s and La Quinta’s locations outside of the US?}
+```{r any Dennys and La Quinta locations outside of the US?}
 ##Denny's 
 non_us_states_dennys<-setdiff(states$abbreviation, Dennys$state)
 print(non_us_states_dennys)
@@ -53,7 +53,7 @@ print(non_us_states_LaQ)
 
 
 ### Exercise 5
-```{r Denny's locations outside the US}
+```{r Dennys locations outside the US}
 ##Denny's locations outside the US
 Dennys %>%
   filter(!(state %in% states$abbreviation))
@@ -102,11 +102,7 @@ Dennys %>%
 
 ```
 
-### Exercise 6
 
-```{r }
-
-```
 
 
 

@@ -14,21 +14,21 @@ library(dsbox)
 ```
 
 ```{r load-data, message = FALSE}
-Dennys <- dsbox::dennys
-Laquinta <- dsbox::laquinta
+D <- dsbox::dennys
+LQ <- dsbox::laquinta
 states <- read_csv("data/states.csv")
 ```
 
 ### Exercise 1
 ```{r dimensions of the Dennys dataset}
-cat ("There are", nrow (Dennys), "rows and", ncol(Dennys), "variables in the Dennys dataset.", "\n") 
+cat ("There are", nrow (D), "rows and", ncol(D), "variables in the Dennys dataset.", "\n") 
 
 ###There are six variables: address, city, state, zip code, longitude, and latitude. Each row represents one Denny's store. 
 ```
 
 ### Exercise 2
 ```{r dimensions of the La Quinta dataset}
-cat ("There are", nrow (Laquinta), "rows and", ncol(Laquinta), "variables in the Laquinta dataset.", "\n") 
+cat ("There are", nrow (LQ), "rows and", ncol(LQ), "variables in the Laquinta dataset.", "\n") 
 
 ###There are six variables: address, city, state, zip code, longitude, and latitude. Each row represents one La Quinta store. 
 ```
@@ -41,13 +41,13 @@ cat ("There are", nrow (Laquinta), "rows and", ncol(Laquinta), "variables in the
 ### Exercise 4
 ```{r any Dennys and La Quinta locations outside of the US?}
 ##Denny's 
-non_us_states_dennys<-setdiff(states$abbreviation, Dennys$state)
-print(non_us_states_dennys)
+non_us_states_D<-setdiff(states$abbreviation, D$state)
+print(non_us_states_D)
 ##all Denny's stores are in the US
 
 ##La Quinta 
-non_us_states_LaQ<-setdiff(Laquinta$state, states$abbreviation)
-print(non_us_states_LaQ)
+non_us_states_LQ<-setdiff(LQ$state, states$abbreviation)
+print(non_us_states_LQ)
 ## There are stores in "AG"  "QR"  "CH"  "NL"  "ANT" "ON"  "VE"  "PU"  "SL"  "FM"  "BC" outside of the US. 
 ```
 
@@ -55,21 +55,31 @@ print(non_us_states_LaQ)
 ### Exercise 5
 ```{r Dennys locations outside the US}
 ##Denny's locations outside the US
-Dennys %>%
+D %>%
   filter(!(state %in% states$abbreviation))
 ##Note that the %in% operator matches the states listed in the state variable to those listed in states$abbreviation. The ! operator means not. 
 ```
 
 ### Exercise 6
-
-```{r }
-
+```{r Add a country variable to the Dennys dataset}
+D_US<-D %>%
+  mutate(country = "United States")
+## D_US<-will assign the result to D_US, if just run dn %>%
+  #mutate(country = "United States"), It modifies the dataset temporarily but does not save the changes. 
 ```
 
 ### Exercise 7
-
-```{r }
-
+```{r La Quinta locations outside the US}
+LQ_NUS<-LQ %>%
+  filter(!(state %in% states$abbreviation))
+print (LQ_NUS$state)
+print (LQ_NUS$address)
+print (LQ_NUS$zip)
+## countries: Mexico, Colombia, Canada, and Honduras
+## Mexico: AG, QR, CH, NL, VE, PU, SL, 
+## Colombia: ANT
+## Canada: ON, BC
+## Honduras: FM
 ```
 
 ### Exercise 8

@@ -1,3 +1,3 @@
-"0","Dennys <- dsbox::dennys"
-"0","Laquinta <- dsbox::laquinta"
+"0","D <- dsbox::dennys"
+"0","LQ <- dsbox::laquinta"
 "0","states <- read_csv(""data/states.csv"")"

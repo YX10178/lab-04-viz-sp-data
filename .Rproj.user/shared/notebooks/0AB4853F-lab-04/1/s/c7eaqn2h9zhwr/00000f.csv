@@ -1,4 +1,4 @@
-"0","cat (""There are"", nrow (Laquinta), ""rows and"", ncol(Laquinta), ""variables in the Laquinta dataset."", ""\n"") "
+"0","cat (""There are"", nrow (LQ), ""rows and"", ncol(LQ), ""variables in the Laquinta dataset."", ""\n"") "
 "1","There are"
 "1"," "
 "1","909"

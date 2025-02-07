@@ -1,0 +1,4 @@
+"0","D_US<-D %>%"
+"0","  mutate(country = ""United States"")"
+"0","## D_US<-will assign the result to D_US, if just run dn %>%"
+"0","  #mutate(country = ""United States""), It modifies the dataset temporarily but does not save the changes. "

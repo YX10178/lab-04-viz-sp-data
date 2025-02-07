@@ -1,4 +1,4 @@
-"0","cat (""There are"", nrow (Dennys), ""rows and"", ncol(Dennys), ""variables in the Dennys dataset."", ""\n"") "
+"0","cat (""There are"", nrow (D), ""rows and"", ncol(D), ""variables in the Dennys dataset."", ""\n"") "
 "1","There are"
 "1"," "
 "1","1643"

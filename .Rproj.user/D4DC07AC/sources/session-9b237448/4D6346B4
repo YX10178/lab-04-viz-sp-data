@@ -3,7 +3,7 @@
     "path": "~/Desktop/datascience/lab-04-viz-sp-data/lab-04.Rmd",
     "project_path": "lab-04.Rmd",
     "type": "r_markdown",
-    "hash": "924535337",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1738375515007.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "107,81",
-        "scrollLine": "102"
+        "cursorPosition": "189,23",
+        "scrollLine": "183"
     },
     "folds": "",
-    "lastKnownWriteTime": 1738967714,
+    "lastKnownWriteTime": 1738969011,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1738967714356,
+    "last_content_update": 1738969011067,
     "read_only": false,
     "read_only_alternatives": []
 }

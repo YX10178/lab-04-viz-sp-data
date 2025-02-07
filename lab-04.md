@@ -305,7 +305,89 @@ print(LQ_US_asc)
 
 ### Exercise 9 (2)
 
+``` r
+## count how many observations are in each state
+D_US_2<-D_US %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+
+LQ_US_2<-LQ_US %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
 ### Exercise 10
+
+``` r
+##Which states have the most Denny’s locations per thousand square miles? What about La Quinta?
+D_US_2 %>%
+  mutate (per = (n / area) * 1000) %>%
+  arrange (desc(per))
+```
+
+    ## # A tibble: 51 × 5
+    ##    state     n name                     area    per
+    ##    <chr> <int> <chr>                   <dbl>  <dbl>
+    ##  1 DC        2 District of Columbia     68.3 29.3  
+    ##  2 RI        5 Rhode Island           1545.   3.24 
+    ##  3 CA      403 California           163695.   2.46 
+    ##  4 CT       12 Connecticut            5543.   2.16 
+    ##  5 FL      140 Florida               65758.   2.13 
+    ##  6 MD       26 Maryland              12406.   2.10 
+    ##  7 NJ       10 New Jersey             8723.   1.15 
+    ##  8 NY       56 New York              54555.   1.03 
+    ##  9 IN       37 Indiana               36420.   1.02 
+    ## 10 OH       44 Ohio                  44826.   0.982
+    ## # ℹ 41 more rows
+
+``` r
+##DC has the most Denny’s locations per thousand square miles
+
+LQ_US_2 %>%
+  mutate (per = (n / area) * 1000) %>%
+  arrange (desc(per))
+```
+
+    ## # A tibble: 48 × 5
+    ##    state     n name             area   per
+    ##    <chr> <int> <chr>           <dbl> <dbl>
+    ##  1 RI        2 Rhode Island    1545. 1.29 
+    ##  2 FL       74 Florida        65758. 1.13 
+    ##  3 CT        6 Connecticut     5543. 1.08 
+    ##  4 MD       13 Maryland       12406. 1.05 
+    ##  5 TX      237 Texas         268596. 0.882
+    ##  6 TN       30 Tennessee      42144. 0.712
+    ##  7 GA       41 Georgia        59425. 0.690
+    ##  8 NJ        5 New Jersey      8723. 0.573
+    ##  9 MA        6 Massachusetts  10554. 0.568
+    ## 10 LA       28 Louisiana      52378. 0.535
+    ## # ℹ 38 more rows
+
+``` r
+## RI has the most La Quinta locations per thousand square miles
+
+## put the two datasets together into a single data frame. 
+## However before we do so, we need to add an identifier variable. 
+D_US <- D_US %>%
+  mutate(establishment = "Denny's")
+LQ_US <- LQ_US %>%
+  mutate(establishment = "La Quinta")
+
+##Because the two data frames have the same columns, we can easily bind them with the bind_rows function
+D_LQ <- bind_rows(D_US, LQ_US)
+
+## plot the locations of the two establishments using a scatter plot
+## color the points by the establishment type.
+## latitude is plotted on the x-axis and the longitude on the y-axis.
+ggplot(D_LQ, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
+```
+
+![](lab-04_files/figure-gfm/most%20locations%20per%20thousand%20square%20miles-1.png)<!-- -->
 
 ### Exercise 11
 

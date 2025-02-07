@@ -146,13 +146,50 @@ print(LQ_US_asc)
 ```
 
 ### Exercise 9 (2)
-```{r }
+```{r count how many observations are in each state}
+## count how many observations are in each state
+D_US_2<-D_US %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
 
+LQ_US_2<-LQ_US %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+  
 ```
 
 ### Exercise 10
+```{r most locations per thousand square miles}
+##Which states have the most Denny’s locations per thousand square miles? What about La Quinta?
+D_US_2 %>%
+  mutate (per = (n / area) * 1000) %>%
+  arrange (desc(per))
+##DC has the most Denny’s locations per thousand square miles
 
-```{r }
+LQ_US_2 %>%
+  mutate (per = (n / area) * 1000) %>%
+  arrange (desc(per))
+## RI has the most La Quinta locations per thousand square miles
+
+## put the two datasets together into a single data frame. 
+## However before we do so, we need to add an identifier variable. 
+D_US <- D_US %>%
+  mutate(establishment = "Denny's")
+LQ_US <- LQ_US %>%
+  mutate(establishment = "La Quinta")
+
+##Because the two data frames have the same columns, we can easily bind them with the bind_rows function
+D_LQ <- bind_rows(D_US, LQ_US)
+
+## plot the locations of the two establishments using a scatter plot
+## color the points by the establishment type.
+## latitude is plotted on the x-axis and the longitude on the y-axis.
+ggplot(D_LQ, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
 
 ```
 

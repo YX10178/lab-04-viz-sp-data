@@ -146,7 +146,164 @@ print (LQ_NUS$zip)
 
 ### Exercise 8
 
-### Exercise 9
+``` r
+## countries: Mexico, Colombia, Canada, and Honduras
+## Mexico: AG, QR, CH, NL, VE, PU, SL, 
+## Colombia: ANT
+## Canada: ON, BC
+## Honduras: FM
+LQ_country<-LQ %>%
+  mutate(country = case_when(
+    state %in% state.abb ~ "United States",
+    state %in% c("ON", "BC") ~ "Canada",
+    state == "ANT" ~ "Colombia",
+    state == "FM" ~ "Honduras",
+    state %in% c("AG", "QR", "CH", "NL", "VE", "PU", "SL") ~ "Mexico"
+  ))
+##Going forward we will work with the data from the United States only. 
+##filter the La Quinta dataset for locations in United States.
+LQ_US <- LQ_country %>%
+  filter(country == "United States")
+```
+
+### Exercise 9 (1)
+
+``` r
+##Which states have the most and fewest Denny’s locations? What about La Quinta? 
+# Descending order (highest to lowest)
+D_US_desc <- D_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(desc(n))
+# Ascending order (lowest to highest)
+D_US_asc <- D_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(n)
+# Print both
+print("Descending Order:")
+```
+
+    ## [1] "Descending Order:"
+
+``` r
+print(D_US_desc)
+```
+
+    ## # A tibble: 51 × 2
+    ## # Groups:   state [51]
+    ##    state     n
+    ##    <chr> <int>
+    ##  1 CA      403
+    ##  2 TX      200
+    ##  3 FL      140
+    ##  4 AZ       83
+    ##  5 IL       56
+    ##  6 NY       56
+    ##  7 WA       49
+    ##  8 OH       44
+    ##  9 MO       42
+    ## 10 PA       40
+    ## # ℹ 41 more rows
+
+``` r
+print("Ascending Order:")
+```
+
+    ## [1] "Ascending Order:"
+
+``` r
+print(D_US_asc)
+```
+
+    ## # A tibble: 51 × 2
+    ## # Groups:   state [51]
+    ##    state     n
+    ##    <chr> <int>
+    ##  1 DE        1
+    ##  2 DC        2
+    ##  3 VT        2
+    ##  4 AK        3
+    ##  5 IA        3
+    ##  6 NH        3
+    ##  7 SD        3
+    ##  8 WV        3
+    ##  9 LA        4
+    ## 10 MT        4
+    ## # ℹ 41 more rows
+
+``` r
+## CA, California has the most Denny’s locations
+## DE, Delaware has the fewest Denny’s locations
+
+# Descending order (highest to lowest)
+LQ_US_desc <- LQ_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(desc(n))
+# Ascending order (lowest to highest)
+LQ_US_asc <- LQ_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(n)
+# Print both
+print("Descending Order:")
+```
+
+    ## [1] "Descending Order:"
+
+``` r
+print(LQ_US_desc)
+```
+
+    ## # A tibble: 48 × 2
+    ## # Groups:   state [48]
+    ##    state     n
+    ##    <chr> <int>
+    ##  1 TX      237
+    ##  2 FL       74
+    ##  3 CA       56
+    ##  4 GA       41
+    ##  5 TN       30
+    ##  6 OK       29
+    ##  7 LA       28
+    ##  8 CO       27
+    ##  9 NM       19
+    ## 10 NY       19
+    ## # ℹ 38 more rows
+
+``` r
+print("Ascending Order:")
+```
+
+    ## [1] "Ascending Order:"
+
+``` r
+print(LQ_US_asc)
+```
+
+    ## # A tibble: 48 × 2
+    ## # Groups:   state [48]
+    ##    state     n
+    ##    <chr> <int>
+    ##  1 ME        1
+    ##  2 AK        2
+    ##  3 NH        2
+    ##  4 RI        2
+    ##  5 SD        2
+    ##  6 VT        2
+    ##  7 WV        3
+    ##  8 WY        3
+    ##  9 IA        4
+    ## 10 MI        4
+    ## # ℹ 38 more rows
+
+``` r
+## TX, Texas has the most La Quinta locations
+## ME, Maine has the fewest La Quinta locations
+```
+
+### Exercise 9 (2)
 
 ### Exercise 10
 

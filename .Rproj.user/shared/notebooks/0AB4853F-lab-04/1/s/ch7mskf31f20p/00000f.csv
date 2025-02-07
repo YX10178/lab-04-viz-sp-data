@@ -1,0 +1,18 @@
+"0","# Descending order (highest to lowest)
+LQ_US_desc <- LQ_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(desc(n))
+# Ascending order (lowest to highest)
+LQ_US_asc <- LQ_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(n)
+# Print both
+print(""Descending Order:"")
+"
+"1","[1]"
+"1"," ""Descending Order:"""
+"1","
+"
+"0","print(LQ_US_desc)"

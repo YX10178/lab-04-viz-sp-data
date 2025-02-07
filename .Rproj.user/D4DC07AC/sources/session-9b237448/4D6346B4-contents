@@ -83,13 +83,69 @@ print (LQ_NUS$zip)
 ```
 
 ### Exercise 8
-
-```{r }
-
+```{r Add a country variable to the La Quinta dataset}
+## countries: Mexico, Colombia, Canada, and Honduras
+## Mexico: AG, QR, CH, NL, VE, PU, SL, 
+## Colombia: ANT
+## Canada: ON, BC
+## Honduras: FM
+LQ_country<-LQ %>%
+  mutate(country = case_when(
+    state %in% state.abb ~ "United States",
+    state %in% c("ON", "BC") ~ "Canada",
+    state == "ANT" ~ "Colombia",
+    state == "FM" ~ "Honduras",
+    state %in% c("AG", "QR", "CH", "NL", "VE", "PU", "SL") ~ "Mexico"
+  ))
+##Going forward we will work with the data from the United States only. 
+##filter the La Quinta dataset for locations in United States.
+LQ_US <- LQ_country %>%
+  filter(country == "United States")
 ```
 
-### Exercise 9
+### Exercise 9 (1)
+```{r most and fewest}
+##Which states have the most and fewest Denny’s locations? What about La Quinta? 
+# Descending order (highest to lowest)
+D_US_desc <- D_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(desc(n))
+# Ascending order (lowest to highest)
+D_US_asc <- D_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(n)
+# Print both
+print("Descending Order:")
+print(D_US_desc)
 
+print("Ascending Order:")
+print(D_US_asc)
+## CA, California has the most Denny’s locations
+## DE, Delaware has the fewest Denny’s locations
+
+# Descending order (highest to lowest)
+LQ_US_desc <- LQ_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(desc(n))
+# Ascending order (lowest to highest)
+LQ_US_asc <- LQ_US %>%
+  group_by(state) %>%
+  count(state) %>%
+  arrange(n)
+# Print both
+print("Descending Order:")
+print(LQ_US_desc)
+
+print("Ascending Order:")
+print(LQ_US_asc)
+## TX, Texas has the most La Quinta locations
+## ME, Maine has the fewest La Quinta locations
+```
+
+### Exercise 9 (2)
 ```{r }
 
 ```

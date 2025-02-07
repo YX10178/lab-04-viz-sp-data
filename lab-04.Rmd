@@ -194,7 +194,6 @@ ggplot(D_LQ, mapping = aes(
 ```
 
 ### Exercise 11
-
 ```{r NC_plot}
 ##Filter the data for observations in North Carolina only, and recreate the plot
 ##You should also adjust the transparency of the points, by setting the alpha level, so that it’s easier to see the overplotted ones. 
@@ -220,7 +219,6 @@ ggplot(D_LQ_NC, mapping = aes(
 ```
 
 ### Exercise 12
-
 ```{r Texas_plot}
 ##filter the data for observations in Texas only, and recreate the plot, with an appropriate alpha level. 
 D_LQ_TX <- D_LQ %>%
